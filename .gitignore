@@ -2,4 +2,8 @@
 
 *.o
 
-.vscode/*
+bin/
+
+obj/
+
+.vscode/
