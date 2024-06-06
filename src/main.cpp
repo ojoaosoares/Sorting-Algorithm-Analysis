@@ -14,31 +14,10 @@
 #include "radix_sort.hpp"
 #include "selection_sort.hpp"
 #include "shell_sort.hpp"
+#include "sorting_algorithm_analysis.hpp"
 
 #define _XOPEN_SOURCE
 #define _POSIX_C_SOURCE 199309L
-
-
-#define ALGINSERTION 1
-#define ALGSELECTION 2
-#define ALGQSORT3INS 3
-#define ALGSHELLSORT 4
-#define ALGRECSEL    5
-#define ALGBUBLE     6
-#define ALGBUCKET    7
-#define ALGCOUNTING  8
-#define ALGMERGE     9
-#define ALGREMERGE  10
-#define ALGRADIX    11
-#define ALL 12
-
-
-// struct alg (algoritimo)
-typedef struct alg{
-  int num; // numero de indentificação
-  char * name; // o nome de indentificação
-} alg_t;
-
 
 // struct opt (opções) 
 //é um struct que serve para armazenar as opções na linha de codigo
@@ -48,22 +27,6 @@ typedef struct opt{
   int alg; // Qual algoritimo devera ser usado
 } opt_t;
 
-
-alg_t algvet[]={
-  {ALGINSERTION,"i"},
-  {ALGSELECTION,"s"},
-  {ALGQSORT3INS,"q3i"},
-  {ALGSHELLSORT,"sh"},
-  {ALGRECSEL,"rs"},
-  {ALGBUBLE, "bb"},
-  {ALGBUCKET, "bk"},
-  {ALGCOUNTING, "c"},
-  {ALGMERGE, "m"},
-  {ALGREMERGE, "rm"},
-  {ALGRADIX, "rx"},
-  {ALL, "all"},
-  {0,0}
-};
 
 void initVector(long long * vet, int size){
 // Descricao: inicializa vet com valores aleatorios
@@ -76,25 +39,6 @@ void initVector(long long * vet, int size){
   }
 }
 
-
-int name2num(char * name){
-  int i=0;
-  while (algvet[i].num){
-    if (!strcmp(algvet[i].name,name)) return algvet[i].num;
-    i++;
-  }
-  return 0;
-}
-
-char * num2name(int num){
-  int i=0;
-  while (algvet[i].num){
-    if (algvet[i].num==num) return algvet[i].name;
-    i++;
-  }
-  return 0;
-}
-
 void copyVetor(long long *v, long long *copia, long long n)
 {
   for (long long i = 0; i < n; i++)
@@ -102,27 +46,27 @@ void copyVetor(long long *v, long long *copia, long long n)
   
 }
 
-
 void uso()
 // Descricao: imprime as opcoes de uso
 // Entrada: nao tem
 // Saida: impressao das opcoes de linha de comando
 {
-  fprintf(stderr,"sortperf\n");
+  fprintf(stderr,"Instructions\n");
   fprintf(stderr,"\t-z <int>\t(vector size)\n");
   fprintf(stderr,"\t-s <int>\t(initialization seed)\n");
   fprintf(stderr,"\t-a <s|i|q3i|sh|rs|bb|bk|c|m|rm|rx|all>\t(algorithm)\n");
   fprintf(stderr,"\t    s\tselection\n");
   fprintf(stderr,"\t    i\tinsertion\n");
   fprintf(stderr,"\t    q3i\tquicksort+median3+insertion\n");
-  fprintf(stderr,"\t    rs\tshell\n");
+  fprintf(stderr,"\t    sh\tshell\n");
   fprintf(stderr,"\t    rs\trecursive selection\n");
-  fprintf(stderr,"\t    rs\tbubble\n");
-  fprintf(stderr,"\t    rs\tbucket\n");
-  fprintf(stderr,"\t    rs\tcounting\n");
-  fprintf(stderr,"\t    rs\tmerge\n");
-  fprintf(stderr,"\t    rs\tradix\n");
-  fprintf(stderr,"\t    rs\tall\n");
+  fprintf(stderr,"\t    bb\tbubble\n");
+  fprintf(stderr,"\t    bk\tbucket\n");
+  fprintf(stderr,"\t    c\tcounting\n");
+  fprintf(stderr,"\t    m\tmerge\n");
+  fprintf(stderr,"\t    m\trecursive merge\n");
+  fprintf(stderr,"\t    rx\tradix\n");
+  fprintf(stderr,"\t    all\tall\n");
 }
 
 void parse_args(int argc, char ** argv, opt_t * opt)
@@ -140,7 +84,7 @@ void parse_args(int argc, char ** argv, opt_t * opt)
      // inicializacao variaveis globais para opcoes
      opt->seed = 1;
      opt->size = 10;
-     opt->alg = 1;
+     opt->alg = 0;
 
      // getopt - letra indica a opcao, : junto a letra indica parametro
      // no caso de escolher mais de uma operacao, vale a ultima
@@ -153,7 +97,7 @@ void parse_args(int argc, char ** argv, opt_t * opt)
 	          opt->seed = atoi(optarg);
                   break;
          case 'a':
-		  opt->alg = name2num(optarg);
+		        opt->alg = name2num(optarg);
                   break;
          case 'h':
          default:
