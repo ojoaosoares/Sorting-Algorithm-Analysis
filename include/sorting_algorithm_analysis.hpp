@@ -5,14 +5,12 @@
 #define ALGSELECTION 2
 #define ALGQSORT3INS 3
 #define ALGSHELLSORT 4
-#define ALGRECSEL    5
-#define ALGBUBLE     6
-#define ALGBUCKET    7
-#define ALGCOUNTING  8
-#define ALGMERGE     9
-#define ALGREMERGE  10
-#define ALGRADIX    11
-#define ALL 12
+#define ALGBUBLE     5
+#define ALGBUCKET    6
+#define ALGCOUNTING  7
+#define ALGREMERGE   8
+#define ALGRADIX     9
+#define ALL          10
 
 struct alg_t{
   int num;

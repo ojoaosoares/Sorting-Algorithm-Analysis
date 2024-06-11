@@ -52,58 +52,6 @@ void merge_sort_recursivo(T *array, long long size) {
         array[i] = copy[i];
 }
 
-/* 
-    Esta é uma versão interativa do algoritmo de Merge Sort. Ela ordena e mescla pares de tamanho 2^i,
-    onde i >= 0 e 2^i é menor que o tamanho total da lista.
-    O vetor auxiliar é utilizado para copiar os pares já ordenados e, em seguida, ele é transferido de volta
-    para o vetor original ao final de cada loop.
-    O loop externo controla a ordenação e mesclagem das partes do array. Ele começa com pares pequenos e gradualmente
-    trabalha em direção a pares maiores.
-    O loop interno opera sobre cada par de elementos e realiza a ordenação e mesclagem. Ele divide o par em duas partes:
-    a primeira parte de esquerda até meio e a segunda de meio até direita. Os índices x e y ajudam a acompanhar a posição
-    atual de ambos os lados.
-    O processo de mesclagem é feito comparando os elementos nos índices x e y, escolhendo o menor (ou igual) e copiando-o
-    para o vetor auxiliar. Isso ocorre até que todos os elementos do par sejam mesclados de volta na ordem correta.
-    Após mesclar todos os pares do loop interno, o vetor auxiliar é transferido de volta para o vetor original, efetivamente
-    atualizando a parte ordenada.
-    Esse processo continua até que todos os elementos estejam totalmente ordenados no vetor original.
-    O algoritmo de Merge Sort é eficiente e garante que o vetor esteja ordenado ao final da sua execução.
-*/
-
-// Interativo 
-
-template <typename T>
-void merge_sort(T *array, long long size) {
-
-    T *copy = new T[size];
-
-    long long l, middle, r, x, y;
-    for (long long i = 1; i < size; i*=2) {
-        for (long long j = 0; j + i < size; j+= i*2)
-        {
-            l = j;
-            middle = l + i;
-            r = l + 2*i;
-            if (r > size) r = size;
-            
-            x = l;
-            y  = middle;
-            
-            while (l < r)
-            {
-                if((array[x] < array[y] || y >= r) &&  (x < middle)) copy[l++] = array[x++];
-                else if((array[y] <= array[x] || x>= middle) && y < r) copy[l++] = array[y++];
-            }
-            
-            for (int k = j; k <  r; k++)
-                array[k] = copy[k];
-        } 
-    }
-
-    delete [] copy;
-}
-
-
 
 template void intercala(int *resultado, int *copy_left, int *copy_right, long long size_left, long long size_right);
 template void intercala(long long *resultado, long long *copy_left, long long *copy_right, long long size_left, long long size_right);
@@ -116,7 +64,3 @@ template void merge_sort_recursivo(double *array, long long size);
 template void merge_sort_recursivo_copia(int *array, int *copy, long long size);
 template void merge_sort_recursivo_copia(long long *array, long long *copy, long long size);
 template void merge_sort_recursivo_copia(double *array, double *copy, long long size);
-
-template void merge_sort(int *array, long long size);
-template void merge_sort(long long *array, long long size);
-template void merge_sort(double *array, long long size);

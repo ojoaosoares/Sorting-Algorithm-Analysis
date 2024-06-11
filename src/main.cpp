@@ -54,17 +54,15 @@ void uso()
   fprintf(stderr,"Instructions\n");
   fprintf(stderr,"\t-z <int>\t(vector size)\n");
   fprintf(stderr,"\t-s <int>\t(initialization seed)\n");
-  fprintf(stderr,"\t-a <s|i|q3i|sh|rs|bb|bk|c|m|rm|rx|all>\t(algorithm)\n");
+  fprintf(stderr,"\t-a <s|i|q3i|sh|bb|bk|c|m|rx|all>\t(algorithm)\n");
   fprintf(stderr,"\t    s\tselection\n");
   fprintf(stderr,"\t    i\tinsertion\n");
   fprintf(stderr,"\t    q3i\tquicksort+median3+insertion\n");
   fprintf(stderr,"\t    sh\tshell\n");
-  fprintf(stderr,"\t    rs\trecursive selection\n");
   fprintf(stderr,"\t    bb\tbubble\n");
   fprintf(stderr,"\t    bk\tbucket\n");
   fprintf(stderr,"\t    c\tcounting\n");
   fprintf(stderr,"\t    m\tmerge\n");
-  fprintf(stderr,"\t    m\trecursive merge\n");
   fprintf(stderr,"\t    rx\tradix\n");
   fprintf(stderr,"\t    all\tall\n");
 }
@@ -175,8 +173,8 @@ int main (int argc, char ** argv){
 
       std::cout << pref << '\n';
 
-      
       if (opt.alg != ALL) break;
+
     case ALGSELECTION:
 
       copyVetor(vet, copia, opt.size);
@@ -194,6 +192,7 @@ int main (int argc, char ** argv){
 
       std::cout << pref << '\n';
       if (opt.alg != ALL) break;
+
     case ALGQSORT3INS:
 
       copyVetor(vet, copia, opt.size);
@@ -212,6 +211,7 @@ int main (int argc, char ** argv){
       std::cout << pref << '\n';
 
       if (opt.alg != ALL) break;
+
     case ALGSHELLSORT:
       
       copyVetor(vet, copia, opt.size);
@@ -230,24 +230,7 @@ int main (int argc, char ** argv){
       std::cout << pref << '\n';
 
       if (opt.alg != ALL) break;
-    case ALGRECSEL:
 
-      copyVetor(vet, copia, opt.size);
-      
-      retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
-
-      recursiveSelectionSort(copia, 0, opt.size - 1);
-
-      retp = clock_gettime(CLOCK_MONOTONIC, &endtp);
-
-      clkDiff(inittp, endtp, &restp);
-
-      sprintf(pref,"alg recursive selection seed %d size %d time %ld.%.9ld",
-      opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
-
-      std::cout << pref << '\n';   
-
-      if (opt.alg != ALL) break;
     case ALGBUBLE:
 
       copyVetor(vet, copia, opt.size);
@@ -266,6 +249,7 @@ int main (int argc, char ** argv){
       std::cout << pref << '\n';
 
       if (opt.alg != ALL) break;
+
     case ALGBUCKET:
 
       copyVetor(vet, copia, opt.size);
@@ -284,6 +268,7 @@ int main (int argc, char ** argv){
       std::cout << pref << '\n';
 
       if (opt.alg != ALL) break;
+
     case ALGCOUNTING:
 
       copyVetor(vet, copia, opt.size);
@@ -302,24 +287,7 @@ int main (int argc, char ** argv){
       std::cout << pref << '\n';
 
       if (opt.alg != ALL) break;
-    case ALGMERGE:
-      
-      copyVetor(vet, copia, opt.size);
 
-      retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
-
-      merge_sort(copia, opt.size);
-
-      retp = clock_gettime(CLOCK_MONOTONIC, &endtp);
-
-      clkDiff(inittp, endtp, &restp);
-
-      sprintf(pref,"alg merge seed %d size %d time %ld.%.9ld",
-      opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
-
-      std::cout << pref << '\n';
-
-      if (opt.alg != ALL) break;
     case ALGREMERGE:
 
       copyVetor(vet, copia, opt.size);
@@ -338,6 +306,7 @@ int main (int argc, char ** argv){
       std::cout << pref << '\n';
 
       if (opt.alg != ALL) break;
+
     case ALGRADIX:
 
       copyVetor(vet, copia, opt.size);

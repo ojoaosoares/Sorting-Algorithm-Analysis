@@ -6,12 +6,10 @@ alg_t algvet[]={
   {ALGSELECTION,"s"},
   {ALGQSORT3INS,"q3i"},
   {ALGSHELLSORT,"sh"},
-  {ALGRECSEL,"rs"},
   {ALGBUBLE, "bb"},
   {ALGBUCKET, "bk"},
   {ALGCOUNTING, "c"},
-  {ALGMERGE, "m"},
-  {ALGREMERGE, "rm"},
+  {ALGREMERGE, "m"},
   {ALGRADIX, "rx"},
   {ALL, "all"},
   {0,0}
