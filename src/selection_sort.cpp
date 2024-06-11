@@ -28,39 +28,7 @@ template<typename T> void selection_sort(T *array, long long n)
     // Muitas operações de movimentação
 }
 
-
-template <typename T>
-void recursiveSelectionSort(T *arr, long long  l, long long r)
-{
-    // find the minimum element in the unsorted subarray `[i…n-1]`
-    // and swap it with `arr[i]`
-    long long min = l;
-    for (long long j = l + 1; j <= r; j++)
-    {
-        // if `arr[j]` is less, then it is the new minimum
-        if (arr[j] < arr[min]) {
-            min = j;    // update the index of minimum element
-        }
-    }
-
-    // swap the minimum element in subarray `arr[i…n-1]` with `arr[i]`
-    if (min!=l)
-    {
-        T aux = arr[l];
-        arr[l] = arr[min];
-        arr[min] = aux;
-    }
-
-    if (l + 1 < r) {
-        recursiveSelectionSort(arr, l + 1, r);
-    }
-}
-
-
 template void selection_sort<int>(int *array, long long n);
 template void selection_sort<long long>(long long *array, long long n);
 template void selection_sort<double>(double *array, long long n);
 
-template void recursiveSelectionSort(int *arr, long long  l, long long r);
-template void recursiveSelectionSort(long long *arr, long long  l, long long r);
-template void recursiveSelectionSort(double *arr, long long  l, long long r);

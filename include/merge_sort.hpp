@@ -8,6 +8,4 @@ template <typename T> void merge_sort_recursivo(T *array, long long size);
 
 template <typename T> void merge_sort_recursivo_copia(T *array, T *copy, long long size);
 
-template <typename T> void merge_sort(T *array, long long size);
-
 #endif
