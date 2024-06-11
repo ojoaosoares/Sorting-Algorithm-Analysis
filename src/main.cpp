@@ -15,6 +15,7 @@
 #include "selection_sort.hpp"
 #include "shell_sort.hpp"
 #include "sorting_algorithm_analysis.hpp"
+#include "arraygenerator.hpp"
 
 #define _XOPEN_SOURCE
 #define _POSIX_C_SOURCE 199309L
@@ -27,17 +28,6 @@ typedef struct opt{
   int alg; // Qual algoritimo devera ser usado
 } opt_t;
 
-
-void initVector(long long * vet, int size){
-// Descricao: inicializa vet com valores aleatorios
-// Entrada: vet
-// Saida: vet
-  int i;
-  // inicializa a parte alocada da vetor com valores aleatorios
-  for (i=0; i<size; i++){
-    vet[i] = (int)(drand48()*size);
-  }
-}
 
 void copyVetor(long long *v, long long *copia, long long n)
 {
@@ -144,7 +134,7 @@ int main (int argc, char ** argv){
   // Gerar números aleatorios com a seed
   srand48(opt.seed);
 
-  initVector(vet, opt.size);
+  initVector2(vet, opt.size);
 
   long long *copia = new long long[opt.size];
 
