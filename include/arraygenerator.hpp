@@ -1,11 +1,14 @@
 #ifndef ARRAY_GENERATOR
 #define ARRAY_GENERATOR
 
-void initVector1(long long * vet, int size);
 
-void initVector2(long long * vet, int size);
 
-void initVector3(long long * vet, int size);
+template <typename T>
+void initVector1(T * vet, long long size);
+
+template <typename T>
+void initVector2(T * vet, long long size);
+
 
 
 #endif
