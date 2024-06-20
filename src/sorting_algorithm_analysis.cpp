@@ -15,6 +15,13 @@ alg_t algvet[]={
   {0,0}
 };
 
+
+type_t typevet[]={
+  {LONG_LONG,"ll"},
+  {DOUBLE,"double"},
+  {0,0}
+};
+
 int name2num(char * name){
   int i=0;
   while (algvet[i].num){
@@ -30,5 +37,15 @@ char * num2name(int num){
     if (algvet[i].num==num) return algvet[i].name;
     i++;
   }
+  return 0;
+}
+
+int type2num(char * type) {
+  int i=0;
+  while (typevet[i].num) {
+    if (!strcmp(typevet[i].type,type)) return typevet[i].num;
+    i++;
+  }
+  
   return 0;
 }

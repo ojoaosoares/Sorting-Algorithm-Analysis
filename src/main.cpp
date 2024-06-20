@@ -26,10 +26,12 @@ typedef struct opt{
   int size; // Tamanho do array
   int seed; // Semente de geração dos numeros pseudo-aleatorios, para receber resultados consistentes
   int alg; // Qual algoritimo devera ser usado
+  int type; // Tipo de variavel
 } opt_t;
 
 
-void copyVetor(long long *v, long long *copia, long long n)
+template <typename T>
+void copyVetor(T *v, T *copia, long long n)
 {
   for (long long i = 0; i < n; i++)
     copia[i] = v[i];
@@ -55,6 +57,10 @@ void uso()
   fprintf(stderr,"\t    m\tmerge\n");
   fprintf(stderr,"\t    rx\tradix\n");
   fprintf(stderr,"\t    all\tall\n");
+  fprintf(stderr,"\t-t <ll|double>\t(array type)\n");  
+  fprintf(stderr,"\t    ll\tlong long\n");
+  fprintf(stderr,"\t    double\tdouble\n");
+  
 }
 
 void parse_args(int argc, char ** argv, opt_t * opt)
@@ -73,10 +79,12 @@ void parse_args(int argc, char ** argv, opt_t * opt)
      opt->seed = 1;
      opt->size = 10;
      opt->alg = 0;
+     opt->type = 0;
+
 
      // getopt - letra indica a opcao, : junto a letra indica parametro
      // no caso de escolher mais de uma operacao, vale a ultima
-     while ((c = getopt(argc, argv, "z:s:a:h")) != EOF){
+     while ((c = getopt(argc, argv, "z:s:a:t:h")) != EOF){
        switch(c) {
          case 'z':
 	          opt->size = atoi(optarg);
@@ -87,14 +95,18 @@ void parse_args(int argc, char ** argv, opt_t * opt)
          case 'a':
 		        opt->alg = name2num(optarg);
                   break;
+          case 't':
+            opt->type = type2num(optarg);
+                  break;
          case 'h':
          default:
+                  printf("OI\n");
                   uso();
                   exit(1);
 
        }
      }
-     if (!opt->alg) {
+     if (!opt->alg || !opt->type) {
        uso();
        exit(1);
      }
@@ -116,33 +128,15 @@ void clkDiff(struct timespec t1, struct timespec t2, struct timespec * res)
   }
 }
 
-int main (int argc, char ** argv){
+template <typename T>
+void execute(opt_t opt, T* vet, T* copia)
+{
+  struct timespec inittp, endtp, restp; // Variaves temporais, inicio, fim e diferença
 
-  long long *vet;
-  
   char pref[100]; // Sera usado para armazenar os resultados
 
-  struct timespec inittp, endtp, restp; // Variaves temporais, inicio, fim e diferença
-  
-
-  // parse_args
-  opt_t opt;
-  parse_args(argc,argv,&opt);
-
-  vet = new long long[opt.size];
-
-  // Gerar números aleatorios com a seed
-  srand48(opt.seed);
-
-  initVector2(vet, opt.size);
-
-  long long *copia = new long long[opt.size];
-
-  //if (opt.size < 100) printVector(vet, opt.size);
-
   int retp;
-  
-  // execute algorithm
+
   switch (opt.alg) {
     case ALL:
 
@@ -259,24 +253,24 @@ int main (int argc, char ** argv){
 
       if (opt.alg != ALL) break;
 
-    case ALGCOUNTING:
+    // case ALGCOUNTING:
 
-      copyVetor(vet, copia, opt.size);
+    //   copyVetor(vet, copia, opt.size);
 
-      retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
+    //   retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
 
-      counting_sort(copia, opt.size);
+    //   // counting_sort(copia, opt.size);
 
-      retp = clock_gettime(CLOCK_MONOTONIC, &endtp);
+    //   retp = clock_gettime(CLOCK_MONOTONIC, &endtp);
 
-      clkDiff(inittp, endtp, &restp);
+    //   clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg counting seed %d size %d time %ld.%.9ld",
-      opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
+    //   sprintf(pref,"alg counting seed %d size %d time %ld.%.9ld",
+    //   opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
-      std::cout << pref << '\n';
+    //   std::cout << pref << '\n';
 
-      if (opt.alg != ALL) break;
+    //   if (opt.alg != ALL) break;
 
     case ALGREMERGE:
 
@@ -297,30 +291,74 @@ int main (int argc, char ** argv){
 
       if (opt.alg != ALL) break;
 
-    case ALGRADIX:
+    // case ALGRADIX:
 
-      copyVetor(vet, copia, opt.size);
+    //   copyVetor(vet, copia, opt.size);
 
-      retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
+    //   retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
 
-      radix_sort(copia, 0, opt.size - 1);
+    //   radix_sort(copia, 0, opt.size - 1);
 
-      retp = clock_gettime(CLOCK_MONOTONIC, &endtp);
+    //   retp = clock_gettime(CLOCK_MONOTONIC, &endtp);
 
-      clkDiff(inittp, endtp, &restp);
+    //   clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg radix seed %d size %d time %ld.%.9ld",
-      opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
+    //   sprintf(pref,"alg radix seed %d size %d time %ld.%.9ld",
+    //   opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
-      std::cout << pref << '\n';   
-      if (opt.alg != ALL) break;
+    //   std::cout << pref << '\n';   
+    //   if (opt.alg != ALL) break;
 
       default :
         break;
   }
+}
 
-  delete[] vet;
-  delete[] copia;
 
+template void execute<long long>(opt_t opt, long long *vet, long long *copia);
+template void execute<double>(opt_t opt, double *vet, double *copia);
+
+int main (int argc, char ** argv){
+    
+  // parse_args
+  opt_t opt;
+  parse_args(argc,argv,&opt);
+
+  
+  srand48(opt.seed);
+
+  switch (opt.type)
+  {
+    case LONG_LONG:
+    {
+      long long *vet = new long long[opt.size], 
+      *copia = new long long[opt.size];
+
+      initVector1(vet, opt.size);
+
+      execute(opt, vet, copia);
+
+      delete[] vet;
+      delete[] copia;
+      break;
+    }
+
+    case DOUBLE:
+    {
+      double *vet = new double[opt.size], 
+      *copia = new double[opt.size];
+
+      initVector1(vet, opt.size);
+
+      execute(opt, vet, copia);
+
+      delete[] vet;
+      delete[] copia;
+      break;
+    }
+    default:
+      break;
+  }
+  
   exit(0);
 }

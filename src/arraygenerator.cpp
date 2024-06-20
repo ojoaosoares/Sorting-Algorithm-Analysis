@@ -23,3 +23,9 @@ void initVector2(T * vet, long long size) {
     vet[i] = (T)(drand48()*2*size) - size;
   }
 }
+
+template void initVector1<long long>(long long * vet, long long size);
+template void initVector1<double>(double * vet, long long size);
+
+template void initVector2<long long>(long long * vet, long long size);
+template void initVector2<double>(double * vet, long long size);

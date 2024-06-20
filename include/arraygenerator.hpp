@@ -1,8 +1,6 @@
 #ifndef ARRAY_GENERATOR
 #define ARRAY_GENERATOR
 
-
-
 template <typename T>
 void initVector1(T * vet, long long size);
 
