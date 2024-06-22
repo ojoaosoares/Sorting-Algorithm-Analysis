@@ -6,12 +6,12 @@
 #define REVERSE_ORDERED_STATE 3
 #define ALL_STATE 4
 
-struct type_t{
+struct state_t{
   int num;
   char * state; 
 };
 
-extern type_t statevet[];
+extern state_t statevet[];
 
 int state2num(char * type);
 

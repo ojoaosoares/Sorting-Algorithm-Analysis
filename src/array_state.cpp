@@ -1,7 +1,7 @@
 #include "array_state.hpp"
 #include <string.h>
 
-type_t statevet[]={
+state_t statevet[]={
   {RANDOM_STATE, "rand"},
   {ORDERED_STATE, "ord"},
   {REVERSE_ORDERED_STATE, "rev"},

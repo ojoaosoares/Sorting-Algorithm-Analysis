@@ -42,7 +42,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
       clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg insertion seed %d size %d time %ld.%.9ld",
+      sprintf(pref,"\t\talg insertion seed %d size %d time %ld.%.9ld",
       opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
       std::cout << pref << '\n';
@@ -63,7 +63,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
       clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg selection seed %d size %d time %ld.%.9ld",
+      sprintf(pref,"\t\talg selection seed %d size %d time %ld.%.9ld",
       opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
       std::cout << pref << '\n';
@@ -83,7 +83,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
       clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg quick median 3 + insertion seed %d size %d time %ld.%.9ld",
+      sprintf(pref,"\t\talg quick median 3 + insertion seed %d size %d time %ld.%.9ld",
       opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
       std::cout << pref << '\n';
@@ -104,7 +104,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
       clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg shell seed %d size %d time %ld.%.9ld",
+      sprintf(pref,"\t\talg shell seed %d size %d time %ld.%.9ld",
       opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
       std::cout << pref << '\n';
@@ -125,7 +125,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
       clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg bubble seed %d size %d time %ld.%.9ld",
+      sprintf(pref,"\t\talg bubble seed %d size %d time %ld.%.9ld",
       opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
       std::cout << pref << '\n';
@@ -146,7 +146,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
       clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg bucket seed %d size %d time %ld.%.9ld",
+      sprintf(pref,"\t\talg bucket seed %d size %d time %ld.%.9ld",
       opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
       std::cout << pref << '\n';
@@ -167,7 +167,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
       clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg counting seed %d size %d time %ld.%.9ld",
+      sprintf(pref,"\t\talg counting seed %d size %d time %ld.%.9ld",
       opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
       std::cout << pref << '\n';
@@ -188,7 +188,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
       clkDiff(inittp, endtp, &restp);
 
-      sprintf(pref,"alg recursive merge seed %d size %d time %ld.%.9ld",
+      sprintf(pref,"\t\talg recursive merge seed %d size %d time %ld.%.9ld",
       opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
       std::cout << pref << '\n';
@@ -209,7 +209,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
         clkDiff(inittp, endtp, &restp);
 
-        sprintf(pref,"alg radix seed %d size %d time %ld.%.9ld",
+        sprintf(pref,"\t\talg radix seed %d size %d time %ld.%.9ld",
         opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
         std::cout << pref << '\n';   
@@ -230,7 +230,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
         clkDiff(inittp, endtp, &restp);
 
-        sprintf(pref,"alg sort std %d size %d time %ld.%.9ld",
+        sprintf(pref,"\t\talg sort std %d size %d time %ld.%.9ld",
         opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
 
         std::cout << pref << '\n';   
@@ -253,23 +253,30 @@ void execute_inital_state(opt_t opt, T* vet, T* copia) {
 
     case RANDOM_STATE:
 
-      execute_alg(opt_t, vet, copia);
+      std::cout << "\tarray inital state " << num2state(RANDOM_STATE) << '\n';
+
+      execute_alg(opt, vet, copia);
 
       if(opt.initial_state != ALL_STATE) break;
     
     case ORDERED_STATE:
 
+      std::cout << "\tarray inital state " << num2state(ORDERED_STATE) << '\n';
+
       std::sort(vet, vet + opt.size);
 
-      execute_alg(opt_t, vet, copia);
+      execute_alg(opt, vet, copia);
 
       if(opt.initial_state != ALL_STATE) break;
 
     case REVERSE_ORDERED_STATE:
 
-      std::sort(vet, vet + opt.size, std::greater());
+      std::cout << "\tarray inital state " << num2state(REVERSE_ORDERED_STATE) << '\n';
+
+      std::sort(vet, vet + opt.size);
+      std::reverse(vet, vet + opt.size);
       
-      execute_alg(opt_t, vet, copia);
+      execute_alg(opt, vet, copia);
 
       if(opt.initial_state != ALL_STATE) break;
 
@@ -293,7 +300,7 @@ int main (int argc, char ** argv){
 
     case INT64_TYPE:
     {
-      std::cout << "data type " << num2type(INT64_TYPE) << '\n';
+      std::cout << "data type " << num2type(INT64_TYPE) << " " << sizeof(int64_t) << " bytes" << '\n';
 
       int64_t *vet = new int64_t[opt.size],
 
@@ -301,7 +308,7 @@ int main (int argc, char ** argv){
 
       initVector1(vet, opt.size);
 
-      execute_alg(opt, vet, copia);
+      execute_inital_state(opt, vet, copia);
 
       delete[] vet; delete[] copia;
 
@@ -312,14 +319,14 @@ int main (int argc, char ** argv){
 
     case UINT32_TYPE:
     {
-      std::cout << "data type " << num2type(UINT32_TYPE) << '\n';
+      std::cout << "data type " << num2type(UINT32_TYPE) << " " << sizeof(uint32_t) << " bytes" << '\n';
 
       uint32_t *vet = new uint32_t[opt.size], 
       *copia = new uint32_t[opt.size];
 
       initVector2(vet, opt.size);
 
-      execute_alg(opt, vet, copia);
+      execute_inital_state(opt, vet, copia);
 
       delete[] vet; delete[] copia;
 
@@ -330,14 +337,14 @@ int main (int argc, char ** argv){
 
     case UINT64_TYPE:
     {
-      std::cout << "data type " << num2type(UINT64_TYPE) << '\n';
+      std::cout << "data type " << num2type(UINT64_TYPE) << " " << sizeof(uint64_t) << " bytes" << '\n';
 
       uint64_t *vet = new uint64_t[opt.size], 
       *copia = new uint64_t[opt.size];
 
       initVector2(vet, opt.size);
 
-      execute_alg(opt, vet, copia);
+      execute_inital_state(opt, vet, copia);
 
       delete[] vet; delete[] copia;
 
@@ -348,17 +355,16 @@ int main (int argc, char ** argv){
 
     case LONG_LONG_TYPE:
     {
-      std::cout << "data type " << num2type(LONG_LONG_TYPE) << '\n';
+      std::cout << "data type " << num2type(LONG_LONG_TYPE) << " " << sizeof(long long) << " bytes" << '\n';
 
       long long *vet = new long long[opt.size], 
       *copia = new long long[opt.size];
 
       initVector2(vet, opt.size);
 
-      execute_alg(opt, vet, copia);
+      execute_inital_state(opt, vet, copia);
 
       delete[] vet; delete[] copia;
-
 
       std::cout << '\n';
 
@@ -379,3 +385,9 @@ template void execute_alg<int64_t>(opt_t opt, int64_t *vet, int64_t *copia);
 template void execute_alg<uint32_t>(opt_t opt, uint32_t *vet, uint32_t *copia);
 template void execute_alg<uint64_t>(opt_t opt, uint64_t *vet, uint64_t *copia);
 template void execute_alg<long long>(opt_t opt, long long *vet, long long *copia);
+
+
+template void execute_inital_state<int64_t>(opt_t opt, int64_t *vet,  int64_t *copia);
+template void execute_inital_state<uint32_t>(opt_t opt, uint32_t *vet,  uint32_t *copia);
+template void execute_inital_state<uint64_t>(opt_t opt, uint64_t *vet,  uint64_t *copia);
+template void execute_inital_state<long long>(opt_t opt, long long *vet,  long long *copia);

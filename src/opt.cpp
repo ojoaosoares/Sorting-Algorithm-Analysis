@@ -77,7 +77,7 @@ void tutorial()
   fprintf(stderr,"\t    rx\tradix\n");
   fprintf(stderr,"\t    std\tsort std\n");
   fprintf(stderr,"\t    all\tall\n");
-  fprintf(stderr,"\t-t <rand|ord|rev|all>\t(array inital state)\n");  
+  fprintf(stderr,"\t-i <rand|ord|rev|all>\t(array inital state)\n");  
   fprintf(stderr,"\t    rand\trandom\n");
   fprintf(stderr,"\t    ord\tordered\n");
   fprintf(stderr,"\t    rev\treverse ordered\n");
