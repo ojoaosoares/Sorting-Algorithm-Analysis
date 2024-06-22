@@ -1,6 +1,7 @@
 #ifndef COUNTING_SORT
 #define COUNTING_SORT
 
-void counting_sort(long long *array, long long n);
+template <typename T>
+void counting_sort(T *array, long long n);
 
 #endif
