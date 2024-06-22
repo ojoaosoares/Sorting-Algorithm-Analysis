@@ -2,8 +2,10 @@
 #include <string.h>
 
 type_t typevet[]={
+  {INT64, "int64"},
+  {UINT32, "uint32"},
+  {UINT64, "uint64"},
   {LONG_LONG,"ll"},
-  {DOUBLE,"double"},
   {0,0}
 };
 

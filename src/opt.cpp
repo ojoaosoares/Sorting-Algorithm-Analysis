@@ -73,8 +73,12 @@ void tutorial()
   fprintf(stderr,"\t    rx\tradix\n");
   fprintf(stderr,"\t    std\tsort std\n");
   fprintf(stderr,"\t    all\tall\n");
-  fprintf(stderr,"\t-t <ll|double>\t(array type)\n");  
+  fprintf(stderr,"\t-t <int64|uint32|uint64|ll>\t(array type)\n");  
+  fprintf(stderr,"\t    int64\tint 64 bits\n");
+  fprintf(stderr,"\t    uint32\tunsigened int 32 bits\n");
+  fprintf(stderr,"\t    uint64\tunsigened int 64 bits\n");
   fprintf(stderr,"\t    ll\tlong long\n");
-  fprintf(stderr,"\t    double\tdouble\n");
+  
+  
   
 }

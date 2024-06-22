@@ -1,9 +1,11 @@
 #ifndef ARRAY_TYPE
 #define ARRAY_TYPE
 
-#define LONG_LONG 1
-#define DOUBLE 2
 
+#define INT64 1
+#define UINT32 2
+#define UINT64 3
+#define LONG_LONG 4
 struct type_t{
   int num;
   char * type; 
