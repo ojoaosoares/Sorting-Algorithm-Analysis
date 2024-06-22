@@ -30,15 +30,6 @@ typedef struct opt{
   int type; // Tipo de variavel
 } opt_t;
 
-
-template <typename T>
-void copyVetor(T *v, T *copia, long long n)
-{
-  for (long long i = 0; i < n; i++)
-    copia[i] = v[i];
-  
-}
-
 void uso()
 // Descricao: imprime as opcoes de uso
 // Entrada: nao tem
