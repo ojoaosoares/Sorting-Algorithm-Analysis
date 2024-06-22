@@ -1,5 +1,6 @@
 #include "opt.hpp"
 #include "array_type.hpp"
+#include "array_state.hpp"
 #include "sorting_algorithm.hpp"
 #include <stdlib.h>
 #include <unistd.h>
@@ -26,28 +27,31 @@ void parse_args(int argc, char ** argv, opt_t * opt)
 
      // getopt - letra indica a opcao, : junto a letra indica parametro
      // no caso de escolher mais de uma operacao, vale a ultima
-     while ((c = getopt(argc, argv, "z:s:a:t:h")) != EOF){
+     while ((c = getopt(argc, argv, "z:s:a:i:t:h")) != EOF){
        switch(c) {
-         case 'z':
-	          opt->size = atoi(optarg);
+          case 'z':
+            opt->size = atoi(optarg);
                   break;
-         case 's':
-	          opt->seed = atoi(optarg);
+          case 's':
+            opt->seed = atoi(optarg);
                   break;
-         case 'a':
-		        opt->alg = name2num(optarg);
+          case 'a':
+            opt->alg = name2num(optarg);
+                  break;
+          case 'i':
+            opt->initial_state = state2num(optarg);
                   break;
           case 't':
             opt->type = type2num(optarg);
                   break;
-         case 'h':
+          case 'h':
          default:
                   tutorial();
                   exit(1);
 
        }
      }
-     if (!opt->alg || !opt->type) {
+     if (!opt->alg || !opt->type || !opt->initial_state) {
        tutorial();
        exit(1);
      }

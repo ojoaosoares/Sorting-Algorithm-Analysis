@@ -7,6 +7,7 @@ typedef struct opt{
   int size; // Tamanho do array
   int seed; // Semente de geração dos numeros pseudo-aleatorios, para receber resultados consistentes
   int alg; // Qual algoritimo devera ser usado
+  int initial_state;
   int type; // Tipo de variavel
 } opt_t;
 
