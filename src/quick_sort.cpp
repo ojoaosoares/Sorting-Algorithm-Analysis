@@ -1,5 +1,6 @@
 #include "quick_sort.hpp"
 #include "insertion_sort.hpp"
+#include <cstdint>
 
 template<typename T> T medianThree(T a, T b, T c) {
     if ((a > b) ^ (a > c)) 
@@ -68,11 +69,24 @@ template int medianThree<int>(int a, int b, int c);
 template long long medianThree<long long>(long long a, long long b, long long c);
 template double medianThree<double>(double a, double b, double c);
 
+template int64_t medianThree<int64_t>(int64_t a, int64_t b, int64_t c);
+template uint32_t medianThree<uint32_t>(uint32_t a, uint32_t b, uint32_t c);
+template uint64_t medianThree<uint64_t>(uint64_t a, uint64_t b, uint64_t c);
 
 template void particao<long long>(long long *array, long long left, long long right, long long *i, long long *j);
 template void particao<int>(int *array, long long left, long long right, long long *i, long long *j);
 template void particao<double>(double *array, long long left, long long right, long long *i, long long *j);
 
+
+template void particao<int64_t>(int64_t *array, long long left, long long right, long long *i, long long *j);
+template void particao<uint32_t>(uint32_t *array, long long left, long long right, long long *i, long long *j);
+template void particao<uint64_t>(uint64_t *array, long long left, long long right, long long *i, long long *j);
+
 template void quick_sort_recursivo<long long>(long long *array, long long left, long long right);
 template void quick_sort_recursivo<double>(double *array, long long left, long long right);
 template void quick_sort_recursivo<int>(int *array, long long left, long long right);
+
+
+template void quick_sort_recursivo<int64_t>(int64_t *array, long long left, long long right);
+template void quick_sort_recursivo<uint32_t>(uint32_t *array, long long left, long long right);
+template void quick_sort_recursivo<uint64_t>(uint64_t *array, long long left, long long right);

@@ -1,4 +1,5 @@
 #include "maxmin.hpp"
+#include <cstdint>
 
 template <typename T>
 void maxMin(T array[], long long n, T &max, T &min)
@@ -52,3 +53,8 @@ void maxMin(T array[], long long n, T &max, T &min)
 template void maxMin<long long>(long long array[], long long n, long long &max, long long &min);
 template void maxMin<int>(int array[], long long n, int &max, int &min);
 template void maxMin<double>(double array[], long long n, double &max, double &min);
+
+template void maxMin<int64_t>(int64_t array[], long long n, int64_t &max, int64_t &min);
+template void maxMin<uint32_t>(uint32_t array[], long long n, uint32_t &max, uint32_t &min);
+template void maxMin<uint64_t>(uint64_t array[], long long n, uint64_t &max, uint64_t &min);
+

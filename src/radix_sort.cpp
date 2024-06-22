@@ -1,4 +1,5 @@
 #include "radix_sort.hpp"
+#include <cstdint>
 
 template <typename T>
 void radix_sort(T *array, long long l, long long r, long long w)
@@ -62,5 +63,17 @@ void radix_partition(T *array, long long l, long long r, long long w) {
 
 template void radix_sort<long long>(long long *array, long long l, long long r, long long w);
 template void radix_sort<int>(int *array, long long l, long long r, long long w);
-template void radix_partition(long long *array, long long l, long long r, long long w);
-template void radix_partition(int *array, long long l, long long r, long long w);
+
+
+template void radix_sort<int64_t>(int64_t *array, long long l, long long r, long long w);
+template void radix_sort<uint32_t>(uint32_t *array, long long l, long long r, long long w);
+template void radix_sort<uint64_t>(uint64_t *array, long long l, long long r, long long w);
+
+
+template void radix_partition<long long>(long long *array, long long l, long long r, long long w);
+template void radix_partition<int>(int *array, long long l, long long r, long long w);
+
+
+template void radix_partition<int64_t>(int64_t *array, long long l, long long r, long long w);
+template void radix_partition<uint32_t>(uint32_t *array, long long l, long long r, long long w);
+template void radix_partition<uint64_t>(uint64_t *array, long long l, long long r, long long w);

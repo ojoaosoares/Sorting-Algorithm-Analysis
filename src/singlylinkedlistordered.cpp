@@ -1,4 +1,5 @@
 #include "singlylinkedlistordered.hpp"
+#include <cstdint>
 
 // Singly Linked List Ordered  implementation
 
@@ -85,3 +86,7 @@ int SinglyLinkedListOrdered<T>::search(T item) const
 template class SinglyLinkedListOrdered<long long>;
 template class SinglyLinkedListOrdered<int>;
 template class SinglyLinkedListOrdered<double>;
+
+template class SinglyLinkedListOrdered<int64_t>;
+template class SinglyLinkedListOrdered<uint32_t>;
+template class SinglyLinkedListOrdered<uint64_t>;

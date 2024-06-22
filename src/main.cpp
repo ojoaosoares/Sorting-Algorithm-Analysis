@@ -266,18 +266,18 @@ int main (int argc, char ** argv){
       break;
     }
 
-    case DOUBLE:
-    {
-      double *vet = new double[opt.size], 
-      *copia = new double[opt.size];
+    // case DOUBLE:
+    // {
+    //   double *vet = new double[opt.size], 
+    //   *copia = new double[opt.size];
 
-      initVector1(vet, opt.size);
+    //   initVector1(vet, opt.size);
 
-      execute(opt, vet, copia);
+    //   execute(opt, vet, copia);
 
-      delete[] vet; delete[] copia;
-      break;
-    }
+    //   delete[] vet; delete[] copia;
+    //   break;
+    // }
 
     default:
       break;
@@ -288,4 +288,3 @@ int main (int argc, char ** argv){
 
 
 template void execute<long long>(opt_t opt, long long *vet, long long *copia);
-template void execute<double>(opt_t opt, double *vet, double *copia);

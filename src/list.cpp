@@ -1,4 +1,5 @@
 #include "list.hpp"
+#include <cstdint>
 
 // Base List implementation
 
@@ -26,3 +27,7 @@ bool List<T>::Empty() const
 template class List<long long>;
 template class List<int>;
 template class List<double>;
+
+template class List<int64_t>;
+template class List<uint32_t>;
+template class List<uint64_t>;

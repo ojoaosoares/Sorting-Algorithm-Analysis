@@ -2,6 +2,7 @@
 #include "singlylinkedlistordered.hpp"
 #include "maxmin.hpp"
 #include <math.h>
+#include <cstdint>
 
 template <typename T>
 void bucket_sort(T *array, long long n)
@@ -33,3 +34,7 @@ void bucket_sort(T *array, long long n)
 template void bucket_sort<long long>(long long *array, long long n);
 template void bucket_sort<int>(int *array, long long n);
 template void bucket_sort<double>(double *array, long long n);
+
+template void bucket_sort<int64_t>(int64_t *array, long long n);
+template void bucket_sort<uint32_t>(uint32_t *array, long long n);
+template void bucket_sort<uint64_t>(uint64_t *array, long long n);
