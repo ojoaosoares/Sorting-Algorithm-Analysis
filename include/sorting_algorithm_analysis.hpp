@@ -10,7 +10,8 @@
 #define ALGCOUNTING  7
 #define ALGREMERGE   8
 #define ALGRADIX     9
-#define ALL          10
+#define SORT_STD     10
+#define ALL          11
 
 
 #define LONG_LONG 1

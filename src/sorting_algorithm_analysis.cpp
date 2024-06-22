@@ -11,6 +11,7 @@ alg_t algvet[]={
   {ALGCOUNTING, "c"},
   {ALGREMERGE, "m"},
   {ALGRADIX, "rx"},
+  {SORT_STD, "std"},
   {ALL, "all"},
   {0,0}
 };

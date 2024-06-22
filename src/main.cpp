@@ -14,6 +14,7 @@
 #include "radix_sort.hpp"
 #include "selection_sort.hpp"
 #include "shell_sort.hpp"
+#include <algorithm>
 #include "sorting_algorithm_analysis.hpp"
 #include "arraygenerator.hpp"
 
@@ -56,6 +57,7 @@ void uso()
   fprintf(stderr,"\t    c\tcounting\n");
   fprintf(stderr,"\t    m\tmerge\n");
   fprintf(stderr,"\t    rx\tradix\n");
+  fprintf(stderr,"\t    std\tsort std\n");
   fprintf(stderr,"\t    all\tall\n");
   fprintf(stderr,"\t-t <ll|double>\t(array type)\n");  
   fprintf(stderr,"\t    ll\tlong long\n");
@@ -309,7 +311,30 @@ void execute(opt_t opt, T* vet, T* copia)
     //   std::cout << pref << '\n';   
     //   if (opt.alg != ALL) break;
 
+        if (opt.alg != ALL) break;
+
+        case SORT_STD:
+
+          copyVetor(vet, copia, opt.size);
+
+          retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
+
+          std::sort(vet, vet + opt.size);
+
+          retp = clock_gettime(CLOCK_MONOTONIC, &endtp);
+
+          clkDiff(inittp, endtp, &restp);
+
+          sprintf(pref,"alg sort std %d size %d time %ld.%.9ld",
+          opt.seed,opt.size,restp.tv_sec,restp.tv_nsec);
+
+          std::cout << pref << '\n';   
+          if (opt.alg != ALL) break;
+
+      
+
       default :
+      
         break;
   }
 }
