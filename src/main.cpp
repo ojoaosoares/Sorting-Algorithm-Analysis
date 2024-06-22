@@ -15,22 +15,13 @@
 #include "selection_sort.hpp"
 #include "shell_sort.hpp"
 #include <algorithm>
-#include "sorting_algorithm_analysis.hpp"
+#include "opt.hpp"
 #include "arraygenerator.hpp"
 
 #define _XOPEN_SOURCE
 #define _POSIX_C_SOURCE 199309L
 
-// struct opt (opções) 
-//é um struct que serve para armazenar as opções na linha de codigo
-typedef struct opt{
-  int size; // Tamanho do array
-  int seed; // Semente de geração dos numeros pseudo-aleatorios, para receber resultados consistentes
-  int alg; // Qual algoritimo devera ser usado
-  int type; // Tipo de variavel
-} opt_t;
-
-void uso()
+void tutorial()
 // Descricao: imprime as opcoes de uso
 // Entrada: nao tem
 // Saida: impressao das opcoes de linha de comando
@@ -54,55 +45,6 @@ void uso()
   fprintf(stderr,"\t    ll\tlong long\n");
   fprintf(stderr,"\t    double\tdouble\n");
   
-}
-
-void parse_args(int argc, char ** argv, opt_t * opt)
-// Descricao: le as opcoes da linha de comando e inicializa variaveis
-// Entrada: argc, argv, opt
-// Saida: opt
-{
-     // variaveis externas do getopt
-     extern char * optarg;
-     extern int optind;
-
-     // variavel auxiliar
-     int c;
-
-     // inicializacao variaveis globais para opcoes
-     opt->seed = 1;
-     opt->size = 10;
-     opt->alg = 0;
-     opt->type = 0;
-
-
-     // getopt - letra indica a opcao, : junto a letra indica parametro
-     // no caso de escolher mais de uma operacao, vale a ultima
-     while ((c = getopt(argc, argv, "z:s:a:t:h")) != EOF){
-       switch(c) {
-         case 'z':
-	          opt->size = atoi(optarg);
-                  break;
-         case 's':
-	          opt->seed = atoi(optarg);
-                  break;
-         case 'a':
-		        opt->alg = name2num(optarg);
-                  break;
-          case 't':
-            opt->type = type2num(optarg);
-                  break;
-         case 'h':
-         default:
-                  printf("OI\n");
-                  uso();
-                  exit(1);
-
-       }
-     }
-     if (!opt->alg || !opt->type) {
-       uso();
-       exit(1);
-     }
 }
 
 void clkDiff(struct timespec t1, struct timespec t2, struct timespec * res)
