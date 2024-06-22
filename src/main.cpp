@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <algorithm>
+#include <cstdint>
 #include "bubble_sort.hpp"
 #include "bucket_sort.hpp"
 #include "counting_sort.hpp"
@@ -253,8 +254,67 @@ int main (int argc, char ** argv){
 
   switch (opt.type)
   {
-    case LONG_LONG:
+    case ALL_TYPE: 
+
+    case INT64_TYPE:
     {
+      std::cout << "data type " << num2type(INT64_TYPE) << '\n';
+
+      int64_t *vet = new int64_t[opt.size],
+
+      *copia = new int64_t[opt.size];
+
+      initVector1(vet, opt.size);
+
+      execute(opt, vet, copia);
+
+      delete[] vet; delete[] copia;
+
+      std::cout << '\n';
+      
+      if(opt.type != ALL_TYPE) break;
+    }
+
+    case UINT32_TYPE:
+    {
+      std::cout << "data type " << num2type(UINT32_TYPE) << '\n';
+
+      uint32_t *vet = new uint32_t[opt.size], 
+      *copia = new uint32_t[opt.size];
+
+      initVector1(vet, opt.size);
+
+      execute(opt, vet, copia);
+
+      delete[] vet; delete[] copia;
+
+      std::cout << '\n';
+
+      if(opt.type != ALL_TYPE) break;
+    }
+
+    case UINT64_TYPE:
+    {
+      std::cout << "data type " << num2type(UINT64_TYPE) << '\n';
+
+      uint64_t *vet = new uint64_t[opt.size], 
+      *copia = new uint64_t[opt.size];
+
+      initVector1(vet, opt.size);
+
+      execute(opt, vet, copia);
+
+      delete[] vet; delete[] copia;
+
+      std::cout << '\n';
+
+      if(opt.type != ALL_TYPE) break;
+    }
+
+    case LONG_LONG_TYPE:
+    {
+      std::cout << "data type " << num2type(LONG_LONG_TYPE) << '\n';
+
       long long *vet = new long long[opt.size], 
       *copia = new long long[opt.size];
 
@@ -263,22 +323,15 @@ int main (int argc, char ** argv){
       execute(opt, vet, copia);
 
       delete[] vet; delete[] copia;
-      break;
+
+
+      std::cout << '\n';
+
+      if(opt.type != ALL_TYPE) break;
+      
     }
 
-    // case DOUBLE:
-    // {
-    //   double *vet = new double[opt.size], 
-    //   *copia = new double[opt.size];
-
-    //   initVector1(vet, opt.size);
-
-    //   execute(opt, vet, copia);
-
-    //   delete[] vet; delete[] copia;
-    //   break;
-    // }
-
+    
     default:
       break;
   }
@@ -287,4 +340,7 @@ int main (int argc, char ** argv){
 }
 
 
+template void execute<int64_t>(opt_t opt, int64_t *vet, int64_t *copia);
+template void execute<uint32_t>(opt_t opt, uint32_t *vet, uint32_t *copia);
+template void execute<uint64_t>(opt_t opt, uint64_t *vet, uint64_t *copia);
 template void execute<long long>(opt_t opt, long long *vet, long long *copia);
