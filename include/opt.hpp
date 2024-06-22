@@ -1,7 +1,6 @@
 #ifndef OPTION_HPP
 #define OPTION_HPP
 
-
 // struct opt (opções) 
 //é um struct que serve para armazenar as opções na linha de codigo
 typedef struct opt{
@@ -11,9 +10,8 @@ typedef struct opt{
   int type; // Tipo de variavel
 } opt_t;
 
-
 void parse_args(int argc, char ** argv, opt_t * opt);
 
-
+void tutorial();
 
 #endif

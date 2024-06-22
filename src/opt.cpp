@@ -52,3 +52,29 @@ void parse_args(int argc, char ** argv, opt_t * opt)
        exit(1);
      }
 }
+
+void tutorial()
+// Descricao: imprime as opcoes de uso
+// Entrada: nao tem
+// Saida: impressao das opcoes de linha de comando
+{
+  fprintf(stderr,"Instructions\n");
+  fprintf(stderr,"\t-z <int>\t(vector size)\n");
+  fprintf(stderr,"\t-s <int>\t(initialization seed)\n");
+  fprintf(stderr,"\t-a <s|i|q3i|sh|bb|bk|c|m|rx|all>\t(algorithm)\n");
+  fprintf(stderr,"\t    s\tselection\n");
+  fprintf(stderr,"\t    i\tinsertion\n");
+  fprintf(stderr,"\t    q3i\tquicksort+median3+insertion\n");
+  fprintf(stderr,"\t    sh\tshell\n");
+  fprintf(stderr,"\t    bb\tbubble\n");
+  fprintf(stderr,"\t    bk\tbucket\n");
+  fprintf(stderr,"\t    c\tcounting\n");
+  fprintf(stderr,"\t    m\tmerge\n");
+  fprintf(stderr,"\t    rx\tradix\n");
+  fprintf(stderr,"\t    std\tsort std\n");
+  fprintf(stderr,"\t    all\tall\n");
+  fprintf(stderr,"\t-t <ll|double>\t(array type)\n");  
+  fprintf(stderr,"\t    ll\tlong long\n");
+  fprintf(stderr,"\t    double\tdouble\n");
+  
+}
