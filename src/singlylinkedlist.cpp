@@ -1,4 +1,5 @@
 #include "singlylinkedlist.hpp"
+#include <cstdint>
 
 // Singly Linked List implemention
 
@@ -186,3 +187,7 @@ void SinglyLinkedList<T>::clear()
 template class SinglyLinkedList<long long>;
 template class SinglyLinkedList<int>;
 template class SinglyLinkedList<double>;
+
+template class SinglyLinkedList<int64_t>;
+template class SinglyLinkedList<uint32_t>;
+template class SinglyLinkedList<uint64_t>;

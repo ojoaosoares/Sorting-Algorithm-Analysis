@@ -1,5 +1,5 @@
-#ifndef SORTING_ALGORITHM_ANALYSIS
-#define SORTING_ALGORITHM_ANALYSIS
+#ifndef SORTING_ALGORITHM
+#define SORTING_ALGORITHM
 
 #define ALGINSERTION 1
 #define ALGSELECTION 2
@@ -13,18 +13,9 @@
 #define SORT_STD     10
 #define ALL          11
 
-
-#define LONG_LONG 1
-#define DOUBLE 2
-
 struct alg_t{
   int num;
   char * name; 
-};
-
-struct type_t{
-  int num;
-  char * type; 
 };
 
 extern alg_t algvet[];
@@ -32,7 +23,5 @@ extern alg_t algvet[];
 int name2num(char * name);
 
 char * num2name(int num);
-
-int type2num(char * type);
 
 #endif

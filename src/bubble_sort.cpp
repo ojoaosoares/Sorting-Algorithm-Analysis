@@ -1,4 +1,5 @@
 #include "bubble_sort.hpp"
+#include <cstdint>
 
 template<typename T> void bubble_sort(T *array, long long n)
 {
@@ -39,3 +40,7 @@ template<typename T> void bubble_sort(T *array, long long n)
 template void bubble_sort<int>(int *array, long long n);
 template void bubble_sort<long long>(long long *array, long long n);
 template void bubble_sort<double>(double *array, long long n);
+
+template void bubble_sort<int64_t>(int64_t *array, long long n);
+template void bubble_sort<uint32_t>(uint32_t *array, long long n);
+template void bubble_sort<uint64_t>(uint64_t *array, long long n);

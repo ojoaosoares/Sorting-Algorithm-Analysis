@@ -1,4 +1,5 @@
 #include "merge_sort.hpp"
+#include <cstdint>
 
 /* O Merge Sort é um algoritmo de ordenação eficiente que segue o princípio "dividir para conquistar".
 Ele divide a lista não ordenada em partes menores, ordena cada parte e depois mescla essas partes em uma única lista ordenada.
@@ -57,10 +58,23 @@ template void intercala(int *resultado, int *copy_left, int *copy_right, long lo
 template void intercala(long long *resultado, long long *copy_left, long long *copy_right, long long size_left, long long size_right);
 template void intercala(double *resultado, double *copy_left, double *copy_right, long long size_left, long long size_right);
 
+template void intercala(int64_t *resultado, int64_t *copy_left, int64_t *copy_right, long long size_left, long long size_right);
+template void intercala(uint32_t *resultado, uint32_t *copy_left, uint32_t *copy_right, long long size_left, long long size_right);
+template void intercala(uint64_t *resultado, uint64_t *copy_left, uint64_t *copy_right, long long size_left, long long size_right);
+
 template void merge_sort_recursivo(int *array, long long size);
 template void merge_sort_recursivo(long long *array, long long size);
 template void merge_sort_recursivo(double *array, long long size);
 
+template void merge_sort_recursivo(int64_t *array, long long size);
+template void merge_sort_recursivo(uint32_t *array, long long size);
+template void merge_sort_recursivo(uint64_t *array, long long size);
+
 template void merge_sort_recursivo_copia(int *array, int *copy, long long size);
 template void merge_sort_recursivo_copia(long long *array, long long *copy, long long size);
 template void merge_sort_recursivo_copia(double *array, double *copy, long long size);
+
+
+template void merge_sort_recursivo_copia(int64_t *array, int64_t *copy, long long size);
+template void merge_sort_recursivo_copia(uint32_t *array, uint32_t *copy, long long size);
+template void merge_sort_recursivo_copia(uint64_t *array, uint64_t *copy, long long size);
