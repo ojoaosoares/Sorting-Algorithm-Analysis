@@ -13,11 +13,12 @@
 #include "arraygenerator.hpp"
 #include "stopwatch.hpp"
 #include "array_type.hpp"
+#include "array_state.hpp"
 #include "sorting_algorithm.hpp"
 #include "opt.hpp"
 
 template <typename T>
-void execute(opt_t opt, T* vet, T* copia)
+void execute_alg(opt_t opt, T* vet, T* copia)
 {
   struct timespec inittp, endtp, restp; // Variaves temporais, inicio, fim e diferença
 
@@ -243,6 +244,40 @@ void execute(opt_t opt, T* vet, T* copia)
   }
 }
 
+template <typename T>
+void execute_inital_state(opt_t opt, T* vet, T* copia) {
+  
+  switch (opt.initial_state)
+  {
+    case ALL_STATE:
+
+    case RANDOM_STATE:
+
+      execute_alg(opt_t, vet, copia);
+
+      if(opt.initial_state != ALL_STATE) break;
+    
+    case ORDERED_STATE:
+
+      std::sort(vet, vet + opt.size);
+
+      execute_alg(opt_t, vet, copia);
+
+      if(opt.initial_state != ALL_STATE) break;
+
+    case REVERSE_ORDERED_STATE:
+
+      std::sort(vet, vet + opt.size, std::greater());
+      
+      execute_alg(opt_t, vet, copia);
+
+      if(opt.initial_state != ALL_STATE) break;
+
+    default:
+      break;
+  }
+}
+
 int main (int argc, char ** argv){
     
   // parse_args
@@ -266,7 +301,7 @@ int main (int argc, char ** argv){
 
       initVector1(vet, opt.size);
 
-      execute(opt, vet, copia);
+      execute_alg(opt, vet, copia);
 
       delete[] vet; delete[] copia;
 
@@ -282,9 +317,9 @@ int main (int argc, char ** argv){
       uint32_t *vet = new uint32_t[opt.size], 
       *copia = new uint32_t[opt.size];
 
-      initVector1(vet, opt.size);
+      initVector2(vet, opt.size);
 
-      execute(opt, vet, copia);
+      execute_alg(opt, vet, copia);
 
       delete[] vet; delete[] copia;
 
@@ -300,9 +335,9 @@ int main (int argc, char ** argv){
       uint64_t *vet = new uint64_t[opt.size], 
       *copia = new uint64_t[opt.size];
 
-      initVector1(vet, opt.size);
+      initVector2(vet, opt.size);
 
-      execute(opt, vet, copia);
+      execute_alg(opt, vet, copia);
 
       delete[] vet; delete[] copia;
 
@@ -318,9 +353,9 @@ int main (int argc, char ** argv){
       long long *vet = new long long[opt.size], 
       *copia = new long long[opt.size];
 
-      initVector1(vet, opt.size);
+      initVector2(vet, opt.size);
 
-      execute(opt, vet, copia);
+      execute_alg(opt, vet, copia);
 
       delete[] vet; delete[] copia;
 
@@ -340,7 +375,7 @@ int main (int argc, char ** argv){
 }
 
 
-template void execute<int64_t>(opt_t opt, int64_t *vet, int64_t *copia);
-template void execute<uint32_t>(opt_t opt, uint32_t *vet, uint32_t *copia);
-template void execute<uint64_t>(opt_t opt, uint64_t *vet, uint64_t *copia);
-template void execute<long long>(opt_t opt, long long *vet, long long *copia);
+template void execute_alg<int64_t>(opt_t opt, int64_t *vet, int64_t *copia);
+template void execute_alg<uint32_t>(opt_t opt, uint32_t *vet, uint32_t *copia);
+template void execute_alg<uint64_t>(opt_t opt, uint64_t *vet, uint64_t *copia);
+template void execute_alg<long long>(opt_t opt, long long *vet, long long *copia);
