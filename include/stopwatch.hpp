@@ -1,5 +1,5 @@
-#ifndef STOPWATCH_HPP
-#define STOPWATCH_HPP
+#ifndef STOPWATCH
+#define STOPWATCH
 
 #include <time.h>
 
