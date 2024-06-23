@@ -160,7 +160,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
       if(clock_gettime(CLOCK_MONOTONIC, &inittp))
           exit(0);
 
-      // counting_sort(copia, opt.size);
+      counting_sort(copia, opt.size);
 
       if(clock_gettime(CLOCK_MONOTONIC, &endtp))
         exit(0);
@@ -237,9 +237,7 @@ void execute_alg(opt_t opt, T* vet, T* copia)
 
         if (opt.alg != ALL) break;
 
-    
       default :
-      
         break;
   }
 }
