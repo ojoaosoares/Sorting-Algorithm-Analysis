@@ -2,6 +2,34 @@
 #include <stdlib.h>
 #include <cstdint>
 #include <algorithm>
+#include <string.h>
+
+extern gen_array_t genvet[] = {
+  {RANDOM, "rand"},
+  {UNIQUE, "uni"},
+  {0, 0}
+};
+
+int gen2num(char * gen)
+{
+  int i=0;
+  while (genvet[i].num) {
+    if (!strcmp(genvet[i].gen, gen)) return genvet[i].num;
+    i++;
+  }
+  
+  return 0;
+}
+
+char * num2gen(int num)
+{
+  int i=0;
+  while (genvet[i].num){
+    if (genvet[i].num==num) return genvet[i].gen;
+    i++;
+  }
+  return 0;
+}
 
 template <typename T>
 void initVector1(T * vet, long long size) {
