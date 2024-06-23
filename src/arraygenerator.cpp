@@ -4,28 +4,30 @@
 #include <algorithm>
 #include <string.h>
 
-extern gen_array_t genvet[] = {
-  {RANDOM, "rand"},
-  {UNIQUE, "uni"},
+extern domain_array_t domainvet[] = {
+  {RANDOM_SIGNED, "rand"},
+  {RANDOM_UNSIGNED, "randu"},
+  {UNIQUE_SIGNED, "uni"},
+  {UNIQUE_UNSIGNED, "uniu"},
   {0, 0}
 };
 
-int gen2num(char * gen)
+int domain2num(char * gen)
 {
   int i=0;
-  while (genvet[i].num) {
-    if (!strcmp(genvet[i].gen, gen)) return genvet[i].num;
+  while (domainvet[i].num) {
+    if (!strcmp(domainvet[i].gen, gen)) return domainvet[i].num;
     i++;
   }
   
   return 0;
 }
 
-char * num2gen(int num)
+char * num2domain(int num)
 {
   int i=0;
-  while (genvet[i].num){
-    if (genvet[i].num==num) return genvet[i].gen;
+  while (domainvet[i].num){
+    if (domainvet[i].num==num) return domainvet[i].gen;
     i++;
   }
   return 0;

@@ -1,18 +1,20 @@
 #ifndef ARRAY_GENERATOR
 #define ARRAY_GENERATOR
 
-#define RANDOM 1
-#define UNIQUE 2
-struct gen_array_t{
+#define RANDOM_SIGNED 1
+#define RANDOM_UNSIGNED 2
+#define UNIQUE_SIGNED 3
+#define UNIQUE_UNSIGNED 4
+struct domain_array_t{
   int num;
   char * gen; 
 };
 
-extern gen_array_t genvet[];
+extern domain_array_t domainvet[];
 
-int gen2num(char * gen);
+int domain2num(char * gen);
 
-char * num2gen(int num);
+char * num2domain(int num);
 
 template <typename T>
 void initVector1(T * vet, long long size);

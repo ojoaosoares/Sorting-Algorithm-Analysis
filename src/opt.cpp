@@ -2,6 +2,7 @@
 #include "array_type.hpp"
 #include "array_state.hpp"
 #include "sorting_algorithm.hpp"
+#include "arraygenerator.hpp"
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -22,12 +23,10 @@ void parse_args(int argc, char ** argv, opt_t * opt)
      opt->seed = 1;
      opt->size = 10;
      opt->alg = 0;
-     opt->type = 0;
-
 
      // getopt - letra indica a opcao, : junto a letra indica parametro
      // no caso de escolher mais de uma operacao, vale a ultima
-     while ((c = getopt(argc, argv, "z:s:a:i:t:h")) != EOF){
+     while ((c = getopt(argc, argv, "z:s:a:d:i:t:h")) != EOF){
        switch(c) {
           case 'z':
             opt->size = atoi(optarg);
@@ -37,6 +36,9 @@ void parse_args(int argc, char ** argv, opt_t * opt)
                   break;
           case 'a':
             opt->alg = name2num(optarg);
+                  break;
+          case 'd':
+            opt->domain = domain2num(optarg);
                   break;
           case 'i':
             opt->initial_state = state2num(optarg);
@@ -51,7 +53,7 @@ void parse_args(int argc, char ** argv, opt_t * opt)
 
        }
      }
-     if (!opt->alg || !opt->type || !opt->initial_state) {
+     if (!opt->alg || !opt->type || !opt->initial_state || !opt->domain) {
        tutorial();
        exit(1);
      }
