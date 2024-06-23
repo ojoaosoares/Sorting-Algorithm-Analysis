@@ -33,7 +33,7 @@ void initVector3(T * vet, long long size) {
 // Saida: vet
 
   // inicializa a parte alocada da vetor com valores aleatorios, porem unicos
-  T item = (T)(drand48()*size);
+  T item = 0;
   for (size_t i = 0; i < size; i++) {
     vet[i] = item++;
   }
@@ -48,7 +48,7 @@ void initVector4(T * vet, long long size) {
 // Saida: vet
   
   // inicializa a parte alocada da vetor com valores aleatorios, porem unicos
-  T item = (T)(drand48()*size*2) - size;
+  T item = (T)(drand48()*size) - size;
   for (size_t i = 0; i < size; i++) {
     vet[i] = item++;
   }
