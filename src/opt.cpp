@@ -1,6 +1,8 @@
 #include "opt.hpp"
 #include "array_type.hpp"
+#include "array_state.hpp"
 #include "sorting_algorithm.hpp"
+#include "arraygenerator.hpp"
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -21,33 +23,37 @@ void parse_args(int argc, char ** argv, opt_t * opt)
      opt->seed = 1;
      opt->size = 10;
      opt->alg = 0;
-     opt->type = 0;
-
 
      // getopt - letra indica a opcao, : junto a letra indica parametro
      // no caso de escolher mais de uma operacao, vale a ultima
-     while ((c = getopt(argc, argv, "z:s:a:t:h")) != EOF){
+     while ((c = getopt(argc, argv, "z:s:a:d:i:t:h")) != EOF){
        switch(c) {
-         case 'z':
-	          opt->size = atoi(optarg);
+          case 'z':
+            opt->size = atoi(optarg);
                   break;
-         case 's':
-	          opt->seed = atoi(optarg);
+          case 's':
+            opt->seed = atoi(optarg);
                   break;
-         case 'a':
-		        opt->alg = name2num(optarg);
+          case 'a':
+            opt->alg = name2num(optarg);
+                  break;
+          case 'd':
+            opt->domain = domain2num(optarg);
+                  break;
+          case 'i':
+            opt->initial_state = state2num(optarg);
                   break;
           case 't':
             opt->type = type2num(optarg);
                   break;
-         case 'h':
+          case 'h':
          default:
                   tutorial();
                   exit(1);
 
        }
      }
-     if (!opt->alg || !opt->type) {
+     if (!opt->alg || !opt->type || !opt->initial_state || !opt->domain || opt->size <= 0 || opt->seed <= 0) {
        tutorial();
        exit(1);
      }
@@ -73,15 +79,19 @@ void tutorial()
   fprintf(stderr,"\t    rx\tradix\n");
   fprintf(stderr,"\t    std\tsort std\n");
   fprintf(stderr,"\t    all\tall\n");
-  fprintf(stderr,"\t-t <rand|ord|rev|all>\t(array inital state)\n");  
+  fprintf(stderr,"\t-d <rand|urand|uni|uuni|all>\t(array domain)\n");
+  fprintf(stderr,"\t    rand\trandom -n to n\n");
+  fprintf(stderr,"\t    urand\trandom 0 to n\n");
+  fprintf(stderr,"\t    uni\tunique -n to n\n");
+  fprintf(stderr,"\t    uuni\tunique 0 to n\n");
+  fprintf(stderr,"\t    all\tall\n");
+  fprintf(stderr,"\t-i <rand|ord|rev|all>\t(array inital state)\n"); 
   fprintf(stderr,"\t    rand\trandom\n");
   fprintf(stderr,"\t    ord\tordered\n");
   fprintf(stderr,"\t    rev\treverse ordered\n");
   fprintf(stderr,"\t    all\tall\n");
   fprintf(stderr,"\t-t <int64|uint32|uint64|ll|all>\t(array type)\n");  
   fprintf(stderr,"\t    int64\tint 64 bits\n");
-  fprintf(stderr,"\t    uint32\tunsigened int 32 bits\n");
-  fprintf(stderr,"\t    uint64\tunsigened int 64 bits\n");
   fprintf(stderr,"\t    ll\tlong long\n");
   fprintf(stderr,"\t    all\tall\n");
   
