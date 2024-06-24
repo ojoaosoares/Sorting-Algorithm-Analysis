@@ -53,7 +53,7 @@ void parse_args(int argc, char ** argv, opt_t * opt)
 
        }
      }
-     if (!opt->alg || !opt->type || !opt->initial_state || !opt->domain) {
+     if (!opt->alg || !opt->type || !opt->initial_state || !opt->domain || opt->size <= 0 || opt->seed <= 0) {
        tutorial();
        exit(1);
      }
@@ -79,15 +79,19 @@ void tutorial()
   fprintf(stderr,"\t    rx\tradix\n");
   fprintf(stderr,"\t    std\tsort std\n");
   fprintf(stderr,"\t    all\tall\n");
-  fprintf(stderr,"\t-i <rand|ord|rev|all>\t(array inital state)\n");  
+  fprintf(stderr,"\t-d <rand|urand|uni|uuni|all>\t(array domain)\n");
+  fprintf(stderr,"\t    rand\trandom -n to n\n");
+  fprintf(stderr,"\t    urand\trandom 0 to n\n");
+  fprintf(stderr,"\t    uni\tunique -n to n\n");
+  fprintf(stderr,"\t    uuni\tunique 0 to n\n");
+  fprintf(stderr,"\t    all\tall\n");
+  fprintf(stderr,"\t-i <rand|ord|rev|all>\t(array inital state)\n"); 
   fprintf(stderr,"\t    rand\trandom\n");
   fprintf(stderr,"\t    ord\tordered\n");
   fprintf(stderr,"\t    rev\treverse ordered\n");
   fprintf(stderr,"\t    all\tall\n");
   fprintf(stderr,"\t-t <int64|uint32|uint64|ll|all>\t(array type)\n");  
   fprintf(stderr,"\t    int64\tint 64 bits\n");
-  fprintf(stderr,"\t    uint32\tunsigened int 32 bits\n");
-  fprintf(stderr,"\t    uint64\tunsigened int 64 bits\n");
   fprintf(stderr,"\t    ll\tlong long\n");
   fprintf(stderr,"\t    all\tall\n");
   

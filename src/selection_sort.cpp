@@ -23,7 +23,6 @@ template<typename T> void selection_sort(T *array, long long n)
     // A complexidade de comparações é O(n²)
     // A complexidade de movimentações é O(n)
 
-
     // Desvantagens
     // Não adaptável
     // Muitas operações de movimentação

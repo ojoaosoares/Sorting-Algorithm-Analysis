@@ -6,9 +6,10 @@
 
 extern domain_array_t domainvet[] = {
   {RANDOM_SIGNED, "rand"},
-  {RANDOM_UNSIGNED, "randu"},
+  {RANDOM_UNSIGNED, "urand"},
   {UNIQUE_SIGNED, "uni"},
-  {UNIQUE_UNSIGNED, "uniu"},
+  {UNIQUE_UNSIGNED, "uuni"},
+  {ALL_DOMAIN, "all"},
   {0, 0}
 };
 

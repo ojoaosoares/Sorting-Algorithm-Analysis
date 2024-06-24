@@ -21,10 +21,9 @@ template<typename T> void insertion_sort(T array[], long long l, long long r)
 
     // Análise
     // INSERTION sort é um método de ordenação ESTÁVEL
-    // A complexidade de comparações é Grande O de n ao quadrado no pior caso, e n no melhor caso
-    // A complexidade de movimentações é Grande O de n ao quadrado no pior caso, e n no melhor caso 
+    // A complexidade de comparações é O(n²) no pior caso, e O(n) no melhor caso
+    // A complexidade de movimentações é O(n²) no pior caso, e O(n) no melhor caso 
     // Adaptável
-
 
     // Desvantagens
     // Muitas operações de movimentação

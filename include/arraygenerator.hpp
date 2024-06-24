@@ -5,6 +5,7 @@
 #define RANDOM_UNSIGNED 2
 #define UNIQUE_SIGNED 3
 #define UNIQUE_UNSIGNED 4
+#define ALL_DOMAIN 5
 struct domain_array_t{
   int num;
   char * gen; 

@@ -3,8 +3,6 @@
 
 type_t typevet[]={
   {INT64_TYPE, "int64"},
-  {UINT32_TYPE, "uint32"},
-  {UINT64_TYPE, "uint64"},
   {LONG_LONG_TYPE,"ll"},
   {ALL_TYPE, "all"},
   {0,0}
